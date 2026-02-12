@@ -76,23 +76,17 @@ function initFAQAccordion() {
 /* ===== HEADER SCROLL EFFECT ===== */
 function initHeaderScroll() {
     const header = document.querySelector('.header');
-    let lastScrollY = 0;
     let ticking = false;
+    let isScrolled = false;
 
     function updateHeader() {
-        const scrollY = window.scrollY;
+        const shouldBeScrolled = window.scrollY > 100;
 
-        if (scrollY > 100) {
-            header.style.padding = '8px 0';
-            header.style.background = 'rgba(255, 255, 255, 0.95)';
-            header.style.boxShadow = '0 2px 12px rgba(0,0,0,0.06)';
-        } else {
-            header.style.padding = '12px 0';
-            header.style.background = 'rgba(255, 255, 255, 0.85)';
-            header.style.boxShadow = 'none';
+        if (shouldBeScrolled !== isScrolled) {
+            header.classList.toggle('header--scrolled', shouldBeScrolled);
+            isScrolled = shouldBeScrolled;
         }
 
-        lastScrollY = scrollY;
         ticking = false;
     }
 

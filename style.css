@@ -222,7 +222,15 @@ button {
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border-bottom: 1px solid var(--gray-200);
-    transition: all var(--transition-medium);
+    transition: padding var(--transition-medium),
+        background var(--transition-medium),
+        box-shadow var(--transition-medium);
+}
+
+.header--scrolled {
+    padding: 8px 0;
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
 }
 
 .header .container {
@@ -390,6 +398,7 @@ button {
 .benefits {
     padding: var(--section-padding);
     background: var(--white);
+    contain: layout style paint;
 }
 
 .benefits .section-title {
@@ -458,6 +467,7 @@ button {
     background: var(--gray-50);
     position: relative;
     overflow: hidden;
+    contain: layout style paint;
 }
 
 .regions::before {
@@ -523,6 +533,7 @@ button {
 .testimonials {
     padding: var(--section-padding);
     background: var(--white);
+    contain: layout style paint;
 }
 
 .testimonials-grid {
@@ -598,6 +609,7 @@ button {
 .faq {
     padding: var(--section-padding);
     background: var(--gray-50);
+    contain: layout style paint;
 }
 
 .faq .section-title {
@@ -680,6 +692,7 @@ button {
     padding: 80px 0;
     background: linear-gradient(135deg, var(--blue-600) 0%, var(--blue-800) 100%);
     position: relative;
+    contain: layout style paint;
 }
 
 .final-cta::before {

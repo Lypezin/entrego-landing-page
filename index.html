@@ -21,13 +21,20 @@
 
     <title>EntreGÔ Itaim — Rode com mais demanda e promoções exclusivas no iFood</title>
 
-    <!-- Google Fonts - Inter -->
+    <!-- Google Fonts - Inter (async + preload woff2) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
-        rel="stylesheet">
+    <link rel="preload" href="https://fonts.gstatic.com/s/inter/v18/UcC73FwrK3iLTeHuS_fjbvMwCp50KnMa2JL7W0Q5n-wU.woff2"
+        as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap">
+    </noscript>
 
     <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
 
     <!-- ===== MARKETING / ANALYTICS ===== -->
     <!-- Cole aqui seu código do Pixel do Facebook, Google Analytics ou GTM. -->
@@ -499,7 +506,7 @@
         </svg>
     </a>
 
-    <script src="script.js"></script>
+
 </body>
 
 </html>
