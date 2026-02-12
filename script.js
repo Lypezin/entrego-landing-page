@@ -6,7 +6,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     initScrollAnimations();
     initFAQAccordion();
-    initHeaderScroll();
 });
 
 /* ===== SCROLL ANIMATIONS (IntersectionObserver) ===== */
@@ -71,29 +70,4 @@ function initFAQAccordion() {
             answer.style.maxHeight = null;
         }
     });
-}
-
-/* ===== HEADER SCROLL EFFECT ===== */
-function initHeaderScroll() {
-    const header = document.querySelector('.header');
-    let ticking = false;
-    let isScrolled = false;
-
-    function updateHeader() {
-        const shouldBeScrolled = window.scrollY > 100;
-
-        if (shouldBeScrolled !== isScrolled) {
-            header.classList.toggle('header--scrolled', shouldBeScrolled);
-            isScrolled = shouldBeScrolled;
-        }
-
-        ticking = false;
-    }
-
-    window.addEventListener('scroll', () => {
-        if (!ticking) {
-            requestAnimationFrame(updateHeader);
-            ticking = true;
-        }
-    }, { passive: true });
 }
