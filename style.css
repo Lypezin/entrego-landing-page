@@ -84,6 +84,7 @@ body {
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    -webkit-tap-highlight-color: transparent;
 }
 
 img {
@@ -95,6 +96,7 @@ img {
 a {
     text-decoration: none;
     color: inherit;
+    touch-action: manipulation;
 }
 
 button {
@@ -102,6 +104,7 @@ button {
     cursor: pointer;
     border: none;
     background: none;
+    touch-action: manipulation;
 }
 
 /* ===== CONTAINER ===== */
@@ -170,14 +173,16 @@ button {
     box-shadow: 0 4px 20px rgba(37, 211, 102, 0.3);
 }
 
-.btn-whatsapp:hover {
-    background: var(--green-whatsapp-dark);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 28px rgba(37, 211, 102, 0.4);
+@media (hover: hover) and (pointer: fine) {
+    .btn-whatsapp:hover {
+        background: var(--green-whatsapp-dark);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 28px rgba(37, 211, 102, 0.4);
+    }
 }
 
 .btn-whatsapp:active {
-    transform: translateY(0);
+    transform: translateY(0) scale(0.97);
 }
 
 .btn-outline {
@@ -187,11 +192,17 @@ button {
     padding: 14px 28px;
 }
 
-.btn-outline:hover {
-    background: var(--blue-600);
-    color: var(--white);
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-blue);
+@media (hover: hover) and (pointer: fine) {
+    .btn-outline:hover {
+        background: var(--blue-600);
+        color: var(--white);
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-blue);
+    }
+}
+
+.btn-outline:active {
+    transform: scale(0.97);
 }
 
 .btn-large {
@@ -248,10 +259,16 @@ button {
     transition: all var(--transition-medium);
 }
 
-.header-cta:hover {
-    background: var(--blue-700);
-    transform: translateY(-1px);
-    box-shadow: var(--shadow-blue);
+@media (hover: hover) and (pointer: fine) {
+    .header-cta:hover {
+        background: var(--blue-700);
+        transform: translateY(-1px);
+        box-shadow: var(--shadow-blue);
+    }
+}
+
+.header-cta:active {
+    transform: scale(0.97);
 }
 
 /* ===== HERO ===== */
@@ -277,6 +294,8 @@ button {
     border-radius: var(--radius-full);
     filter: blur(120px);
     opacity: 0.25;
+    will-change: transform;
+    transform: translateZ(0);
 }
 
 .shape-1 {
@@ -315,7 +334,7 @@ button {
 }
 
 .hero-title {
-    font-size: 2rem;
+    font-size: clamp(1.5rem, 5vw, 2rem);
     font-weight: 900;
     line-height: 1.15;
     letter-spacing: -0.03em;
@@ -391,10 +410,16 @@ button {
     transition: all var(--transition-medium);
 }
 
-.benefit-card:hover {
-    transform: translateY(-4px);
-    border-color: var(--blue-200);
-    box-shadow: var(--shadow-blue);
+@media (hover: hover) and (pointer: fine) {
+    .benefit-card:hover {
+        transform: translateY(-4px);
+        border-color: var(--blue-200);
+        box-shadow: var(--shadow-blue);
+    }
+}
+
+.benefit-card:active {
+    transform: scale(0.98);
 }
 
 .benefit-icon {
@@ -453,6 +478,12 @@ button {
     margin: 0 auto;
 }
 
+@media (max-width: 359px) {
+    .regions-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
 .region-card {
     display: flex;
     align-items: center;
@@ -473,12 +504,19 @@ button {
     flex-shrink: 0;
 }
 
-.region-card:hover {
-    border-color: var(--blue-300);
+@media (hover: hover) and (pointer: fine) {
+    .region-card:hover {
+        border-color: var(--blue-300);
+        background: var(--blue-50);
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-blue);
+        color: var(--blue-600);
+    }
+}
+
+.region-card:active {
+    transform: scale(0.97);
     background: var(--blue-50);
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-blue);
-    color: var(--blue-600);
 }
 
 /* ===== TESTIMONIALS ===== */
@@ -500,8 +538,10 @@ button {
     transition: transform var(--transition-medium);
 }
 
-.testimonial-card:hover {
-    transform: translateY(-4px);
+@media (hover: hover) and (pointer: fine) {
+    .testimonial-card:hover {
+        transform: translateY(-4px);
+    }
 }
 
 .testimonial-print {
@@ -580,8 +620,10 @@ button {
     transition: border-color var(--transition-medium);
 }
 
-.faq-item:hover {
-    border-color: var(--blue-200);
+@media (hover: hover) and (pointer: fine) {
+    .faq-item:hover {
+        border-color: var(--blue-200);
+    }
 }
 
 .faq-item.active {
@@ -619,6 +661,7 @@ button {
     overflow: hidden;
     transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1),
         padding 0.3s ease;
+    will-change: max-height;
 }
 
 .faq-item.active .faq-answer {
@@ -681,6 +724,7 @@ button {
 /* ===== FOOTER ===== */
 .footer {
     padding: 24px 0;
+    padding-bottom: calc(24px + env(safe-area-inset-bottom, 0px));
     text-align: center;
     color: var(--gray-400);
     font-size: 0.85rem;
@@ -691,7 +735,7 @@ button {
 /* ===== WHATSAPP FLOAT ===== */
 .whatsapp-float {
     position: fixed;
-    bottom: 24px;
+    bottom: calc(24px + env(safe-area-inset-bottom, 0px));
     right: 24px;
     z-index: 999;
     width: 60px;
@@ -706,9 +750,15 @@ button {
     animation: float-pulse 2s ease-in-out infinite;
 }
 
-.whatsapp-float:hover {
-    transform: scale(1.1);
-    box-shadow: 0 6px 28px rgba(37, 211, 102, 0.55);
+@media (hover: hover) and (pointer: fine) {
+    .whatsapp-float:hover {
+        transform: scale(1.1);
+        box-shadow: 0 6px 28px rgba(37, 211, 102, 0.55);
+    }
+}
+
+.whatsapp-float:active {
+    transform: scale(0.95);
 }
 
 .whatsapp-float svg {
@@ -778,8 +828,9 @@ button {
     display: flex;
     align-items: flex-end;
     gap: 6px;
-    padding: 8px 16px 4px;
-    height: 120px;
+    padding: 8px 16px 24px;
+    height: 140px;
+    overflow: hidden;
 }
 
 .mock-bar {
