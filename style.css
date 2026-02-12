@@ -282,7 +282,7 @@ button {
 /* ===== HERO ===== */
 .hero {
     position: relative;
-    padding: 120px 0 64px;
+    padding: 64px 0;
     overflow: hidden;
     min-height: 100dvh;
     display: flex;
