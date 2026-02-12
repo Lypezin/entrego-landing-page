@@ -6,6 +6,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     initScrollAnimations();
     initFAQAccordion();
+    initDynamicSource();
 });
 
 /* ===== SCROLL ANIMATIONS (IntersectionObserver) ===== */
@@ -68,6 +69,50 @@ function initFAQAccordion() {
             item.classList.remove('active');
             button.setAttribute('aria-expanded', 'false');
             answer.style.maxHeight = null;
+        }
+    });
+}
+
+/* ===== DYNAMIC SOURCE TRACKING ===== */
+function initDynamicSource() {
+    const params = new URLSearchParams(window.location.search);
+    const source = params.get('utm_source'); // Case insensitive check later
+
+    if (!source) return;
+
+    const lowerSource = source.toLowerCase();
+    let message = '';
+
+    // Define messages based on source (priority order)
+    if (lowerSource.includes('tiktok')) {
+        message = 'Vim do TikTok e quero mais informações sobre a EntreGÔ Itaim';
+    } else if (lowerSource.includes('facebook')) {
+        message = 'Vim do Facebook e quero mais informações sobre a EntreGÔ Itaim';
+    } else if (lowerSource.includes('instagram')) {
+        message = 'Vim do Instagram e quero mais informações sobre a EntreGÔ Itaim';
+    } else if (lowerSource.includes('google')) {
+        message = 'Vim do Google e quero mais informações sobre a EntreGÔ Itaim';
+    }
+
+    if (!message) return; // No matching source, keep default
+
+    // Update all WhatsApp links
+    const whatsappLinks = document.querySelectorAll('a[href*="wa.me"]');
+
+    whatsappLinks.forEach(link => {
+        const currentHref = link.getAttribute('href');
+        if (!currentHref) return;
+
+        // Extract phone number from current href
+        // Supported formats: wa.me/5511... or api.whatsapp.com/send?phone=5511...
+        // For this site we use wa.me/5511...
+        const phoneMatch = currentHref.match(/wa\.me\/(\d+)/);
+
+        if (phoneMatch && phoneMatch[1]) {
+            const phone = phoneMatch[1];
+            // Update href with new message
+            const newHref = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+            link.setAttribute('href', newHref);
         }
     });
 }
