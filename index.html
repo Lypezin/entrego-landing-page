@@ -304,6 +304,7 @@
         <link rel="stylesheet" href="style.css">
     </noscript>
     <script src="script.js" defer></script>
+    <script src="https://www.youtube.com/iframe_api"></script>
 
     <!-- ===== MARKETING / ANALYTICS ===== -->
     <!-- Cole aqui seu código do Pixel do Facebook, Google Analytics ou GTM. -->
@@ -332,13 +333,21 @@
                 </div>
                 <div class="hero-video animate-on-scroll">
                     <div class="video-wrapper">
-
-                        <iframe width="100%" height="100%"
-                            src="https://www.youtube.com/embed/IV01EKbFbfE?si=LtPTXMU_DdAVOP74&rel=0&modestbranding=1&autoplay=1&mute=1"
+                        <iframe id="youtube-player" width="100%" height="100%"
+                            src="https://www.youtube.com/embed/IV01EKbFbfE?si=LtPTXMU_DdAVOP74&rel=0&modestbranding=1&autoplay=1&mute=1&enablejsapi=1"
                             title="Apresentação EntreGÔ Itaim" frameborder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                             allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
                         </iframe>
+                        <button id="unmute-btn" class="video-mute-btn" aria-label="Ativar som">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" width="20" height="20">
+                                <path d="M11 5L6 9H2v6h4l5 4V5z"></path>
+                                <line x1="23" y1="9" x2="17" y2="15"></line>
+                                <line x1="17" y1="9" x2="23" y2="15"></line>
+                            </svg>
+                            Ativar Som
+                        </button>
                     </div>
                     <p class="video-duration">Apenas 3 minutos</p>
                 </div>
