@@ -116,3 +116,25 @@ function initDynamicSource() {
         }
     });
 }
+
+/* ===== YOUTUBE VIDEO CONTROL ===== */
+var player; // Define global variable
+function onYouTubeIframeAPIReady() {
+    player = new YT.Player('youtube-player', {
+        events: {
+            'onReady': onPlayerReady
+        }
+    });
+}
+
+function onPlayerReady(event) {
+    const muteBtn = document.getElementById('unmute-btn');
+    if (muteBtn) {
+        muteBtn.addEventListener('click', () => {
+            if (player && player.unMute) {
+                player.unMute();
+                muteBtn.classList.add('hidden');
+            }
+        });
+    }
+}
